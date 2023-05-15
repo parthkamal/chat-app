@@ -25,10 +25,8 @@ const addUser = ({ id, name, room }) => {
 
 //remove user from the user list
 const removeUser = (id) => {
-    const updatedUsers = users.filter((user) => user.id!==id);
-    users = [...users,updatedUsers];
-
-    return;
+    const index = users.findIndex((user) => user.id === id);
+    if(index !== -1) return users.splice(index, 1)[0]; 
 }
 
 

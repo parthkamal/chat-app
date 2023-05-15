@@ -6,6 +6,8 @@ import io from 'socket.io-client';
 import '../style/Chat.css';
 import InfoBar from './InfoBar';
 import Input from './Input';
+import Messages from './Messages';
+
 
 
 
@@ -21,17 +23,17 @@ const Chat = () => {
     const ENDPOINT = 'localhost:9000';
 
 
-   
+
 
 
     //get the data from the url params when the component is rendered first
     useEffect(() => {
         //get the url params
         const { name, room } = urlParams;
-        setName(name); 
+        setName(name);
         setRoom(room);
 
-        console.log({name,room});
+        console.log({ name, room });
 
         socket = io(ENDPOINT);
         socket.emit('join', { name, room });
@@ -56,8 +58,9 @@ const Chat = () => {
     return (
         <div className='outer-container'>
             <div className='container'>
-            <InfoBar room={room}/>
-                <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
+                <InfoBar room={room} />
+                <Messages messages={messages} name={name} />
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
 
         </div>
