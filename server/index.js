@@ -7,9 +7,7 @@ const server = http.Server(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
 
 //helper functions
-const {addUser, removeUser, getUser, getUsersInRoom} = require('./users.js')
-
-
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 const routes = require('./routes/index');
 
 //middlewares
@@ -20,27 +18,25 @@ app.use(cors())
 
 io.on('connection', (socket) => {
 
-  console.log('we have a new connection');
-
-  socket.on('connect',()=> console.log('socket connection mila hai bhaiya'))
-
 
   //functionality when a user has joined
-  socket.on('join', ({name, room} ,callback)=>{
-    const {error, user} = addUser({id: socket.id ,name, room});
+  socket.on('join', ({ name, room } ) => {
 
-    if(error) return callback(error);
+    const { error, user } = addUser({ id: socket.id, name, room });
 
-    socket.emit('message', {user: 'admin', text: `${user.name} welcome to the room ${user.room}`});
-    socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name}, has joined`});
+    if (error) return {error};
+
+
+    socket.emit('message', { user: 'admin', text: `${user.name} welcome to the room ${user.room}` });
+    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined` });
 
     socket.join(user.room);
-
   })
 
-  socket.on('sendMessage', (message, callback)=> {
+  socket.on('sendMessage', (message) => {
+    console.log('we have received the send message', message);
     const user = getUser(socket.id);
-    io.to(user.room).emit('message', {user: user.name, text: message});
+    io.to(user.room).emit('message', { user: user.name, text: message });
   })
 
   socket.on('disconnect', () => {

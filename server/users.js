@@ -15,6 +15,8 @@ const addUser = ({ id, name, room }) => {
     if (existingUser) return { error: "username is taken" }
 
     const user = { id, name, room };
+
+    console.log('users.js:', user);
     users.push(user);
 
     return { user };
@@ -42,5 +44,4 @@ const getUser = (id) => {
 //get the list of user present in particular room
 const getUsersInRoom = (room) => users.filter((user) => user.room ===room);
 
-
-module.exports = [addUser, removeUser, getUser, getUsersInRoom];
+module.exports =  {addUser, removeUser, getUser, getUsersInRoom};

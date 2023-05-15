@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Join />} />
+        <Route path='/' exact element={<Join />} />
         <Route path='/chat' element={<Chat />} />
         {/* chat routes using useParams (url parameters) */}
         <Route path='/chat/:room/:name' element={<Chat />} />
@@ -17,7 +17,7 @@ const App = () => {
         {/* for error loading path */}
         <Route path='*' element={<Navigate to='/' />} />
         
-      </Routes>
+      </Routes> 
     </div>
   );
 }
