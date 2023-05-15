@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { UNSAFE_DataRouterContext, useParams } from 'react-router-dom';
 import io from 'socket.io-client';
+
+//css 
+import '../style/Chat.css';
+import InfoBar from './InfoBar';
+
+
+
 let socket;
 
 const Chat = () => {
 
-
-    const [Name, setName] = useState('');
-    const [Room, setRoom] = useState('');
+    const [name, setName] = useState('');
+    const [room, setRoom] = useState('');
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const urlParams = useParams();
     const ENDPOINT = 'localhost:9000';
 
 
-    const setStates = ({ name, room }) => {
-
-        setName(name);
-        setRoom(room);
-
-        console.log({ Name, Room });
-    }
+   
 
 
     //get the data from the url params when the component is rendered first
     useEffect(() => {
         //get the url params
         const { name, room } = urlParams;
+        setName(name); 
+        setRoom(room);
 
-        setStates({ name, room });
+        console.log({name,room});
+
         socket = io(ENDPOINT);
         socket.emit('join', { name, room });
-    }, []);
+    }, [ENDPOINT]);
 
     //set the messages 
     useEffect(() => {
@@ -49,12 +52,10 @@ const Chat = () => {
         if (message) socket.emit('sendMessage', message, () => setMessage(''));
     }
 
-
-
-
     return (
         <div className='outer-container'>
             <div className='container'>
+            <InfoBar room={room}/>
                 <input
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
