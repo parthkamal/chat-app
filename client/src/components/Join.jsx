@@ -11,7 +11,7 @@ const Join = () => {
     const [room, setRoom] = useState('');
 
     //handlers
-    const handleName =(event)=>{
+    const handleName = (event) => {
         setName(event.target.value);
     }
 
@@ -21,16 +21,11 @@ const Join = () => {
 
     const handleSubmit = (event) => {
         if (!name || !room) event.preventDefault();
+
     }
 
-
-
-
-
-
-
     //placeholders
-    const namePlaceholder = 'enter your name here'; 
+    const namePlaceholder = 'enter your name here';
     const roomPlaceholder = 'enter your room here';
 
     return (
@@ -40,10 +35,10 @@ const Join = () => {
                     Join
                 </h1>
                 <div>
-                <input placeholder={namePlaceholder} className='join-input' onChange={(e)=>handleName(e)}/>
+                    <input placeholder={namePlaceholder} className='join-input' onChange={(e) => handleName(e)} />
                 </div>
                 <div>
-                <input placeholder={roomPlaceholder} className='join-input' onChange={(e)=>handleRoom(e)}/>
+                    <input placeholder={roomPlaceholder} className='join-input' onChange={(e) => handleRoom(e)} />
                 </div>
 
                 <Link onClick={(event) => handleSubmit(event)} to={`/chat/${room}/${name}`}>
