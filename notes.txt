@@ -1,0 +1,92 @@
+//what is the difference between websockets and tcp 
+
+//efficiency - refers to the amount of resources which are required to establish the connection
+
+Tcp 
+
+Unidirectional or bidirectional 
+Connection oriented.
+reliable  
+Less efficient
+Realtime chat is not supported
+Transport layer protocol
+ 
+websockets 
+
+Bidirectional 
+Connection oriented (connection can be established but it need not to be necessary )
+Less reliable 
+Efficient
+Well suited for real time communication 
+Application layer protocol
+
+
+
+Socket.io is a javascript library which is build on top of websocket protocol, with additional features like automatic reconnection. 
+Socket.io work on the concept of event-based connection. 
+It uses events to communicate between servers and client.
+When a client or server wants to send  data to the other, it emits an event. 
+The other component can then listen for that event and take any action that is appropriate. 
+For example, a client might emit an event to notify the server that it has joined a chat room. 
+The server can then listen for that event and add the client to the chat room.
+
+
+
+
+//why are websockets named like that? 
+Websockets works on the concept of socket programming. 
+In which a socket is a bidirectional communication endpoint between two programs (can be client and the sever).
+
+In socket.io the io object is used to manage all the sockets (connections) from all the different clients and communicate between them in real time. 
+Where is socket is used manage the socket in real time.
+
+
+http://localhost:9000/
+
+
+Challenges
+1.During connecting the client side socket with the backend server. I have encountered the cors policy error. On debugging i find that . 
+2.First of all in express server. Only the expresses server was listening to port:9000, so i fixed that. I listened the server to the port.
+After that , I found that the cors was not added to the app. So I added cors middleware in the express app.
+But the server was showing open ssl connection error , on figuring it out, I find that the socket attached to the had to have cors enabled. 
+At this point of time, I am getting some code in the backend when I was sending the join request. 
+After debugging for hours. I found that It was a spelling mistake in the backend side.
+
+Project Name: Chat App
+
+Project Description:
+
+This project is a real-time chat application that allows users to communicate with each other in real time. The application is built using ReactJS for the frontend and NodeJS and ExpressJS for the backend. Socket.IO is used to maintain real-time communication between the frontend and backend. The application is also fully responsive, meaning it can be used on any device.
+
+Resume Points:
+
+1.Built a real-time chat application using ReactJS, NodeJS, ExpressJS, and Socket.IO.
+2.Developed the concepts of chatrooms in the application.
+3.Made the application fully responsive.
+4.Learned the concepts of socket.io, websockets, react-router-dom, useeffect, useParams, reactjs, html, css, and javascript.
+5.Successfully deployed the application to a production environment.
+
+Concepts Learned:
+
+1.Socket.IO: A real-time communication library that allows for bi-directional communication between the frontend and backend.
+2.Websockets: A technology that allows for bi-directional communication between the frontend and backend.
+3.React-router-dom: A library that makes it easy to create routing in ReactJS applications.
+4.UseEffect: A ReactJS hook that allows for side effects to be executed after a component is mounted or updated.
+5.UseParams: A ReactJS hook that allows for parameters to be passed to a component.
+6.ReactJS: A JavaScript library that makes it easy to create user interfaces.
+7.HTML: The markup language used to create web pages.
+8.CSS: The style sheet language used to style web pages.
+9.JavaScript: The programming language used to add interactivity to web pages.
+
+Deployment:
+
+The application was deployed to a production environment using Heroku. Heroku is a cloud platform that makes it easy to deploy and scale web applications.
+(the application was not deployed due to credit card requirements in the app)
+
+
+Conclusion:
+
+This project was a great learning experience. I learned a lot about real-time communication, chatrooms, and deployment. I am confident that the skills I learned in this project will be valuable in my future career.
+ 
+
+
