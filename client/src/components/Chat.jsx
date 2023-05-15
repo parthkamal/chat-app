@@ -9,7 +9,8 @@ const Chat = () => {
 
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
-
+    const [messages,setMessages] = useState([]);
+    const [message, setMessage] = useState('');
     const ENDPOINT = 'localhost:9000';
 
 
@@ -21,14 +22,21 @@ const Chat = () => {
         setRoom(urlParams.room);
 
         const socket = io(ENDPOINT);
-        socket.emit('message','hello from the react client')
+        socket.emit('join',{name, room})
     }, [ENDPOINT,{name,room}]);
+
+    //set the messages 
+    useEffect(()=> {
+        socket.on('message', (message)=>{
+            setMessages([...messages, message])
+        })
+    }, [messages]);
 
 
 
     return (
         <div>
-            chat
+            
         </div>
     );
 }
