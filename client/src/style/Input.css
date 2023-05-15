@@ -1,0 +1,17 @@
+.form-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.send-input {
+    width: 80%;
+    padding: 10px;
+}
+
+.send-button {
+    padding: 20px 10px;
+    border: none;
+    width: 20%;
+    color: white;
+    background: #0275D8;
+}
